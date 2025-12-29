@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakaria Hansali | Adaptive Data Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --tag-bg: #0f172a;
+            --highlight: #f472b6; /* Pink for "New" or special highlights */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; color: white; }
+        .subtitle { color: var(--accent); font-weight: 600; margin-top: 0.5rem; }
+        .intro { max-width: 700px; margin: 1rem auto; color: var(--text-muted); }
+        .contact-links a { color: var(--text-main); margin: 0 10px; text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+        /* Filter Buttons */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 100;
+            border-bottom: 1px solid #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: #0f172a;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Grid Layout */
+        .container {
+            max-width: 1400px; /* Wider container for more cards */
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* CV Card */
+        .cv-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .company-name { font-size: 1.25rem; font-weight: bold; color: white; }
+        .role-title { font-size: 0.95rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+        .description { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1; }
+
+        /* Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: var(--tag-bg);
+            border: 1px solid #475569;
+            color: #cbd5e1;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            box-sizing: border-box;
+        }
+
+        .download-btn:hover {
+            background-color: var(--accent);
+            color: var(--bg-color);
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Zakaria Hansali</h1>
+    <div class="subtitle">Data Scientist & BI Analyst | B.U.T. STID</div>
+    <p class="intro">
+        Adaptive profile with 20 specialized variations. 
+        Select a category to see how my skills in Python, SQL, and Analytics fit your specific industry needs.
+    </p>
+    <div class="contact-links">
+        <a href="mailto:zaka.hansali@gmail.com">zaka.hansali@gmail.com</a>
+        <a href="https://jilicuerda.netlify.app" target="_blank">Portfolio</a>
+        <a href="#">LinkedIn</a>
+    </div>
+</header>
+
+<nav class="filters">
+    <button class="filter-btn active" onclick="filterSelection('all')">All CVs</button>
+    <button class="filter-btn" onclick="filterSelection('scientific')">Scientific / AI / R&D</button>
+    <button class="filter-btn" onclick="filterSelection('bi')">BI & Analytics</button>
+    <button class="filter-btn" onclick="filterSelection('eng')">Data Engineering & IoT</button>
+    <button class="filter-btn" onclick="filterSelection('special')">Specialized / Niche</button>
+</nav>
+
+<div class="container">
+    <div class="cv-grid">
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">MaiaSpace</span>
+                <span class="tag">Space</span>
+            </div>
+            <div class="role-title">Data Scientist (Algorithms)</div>
+            <p class="description">Trajectory extraction algorithms, signal processing, and physical data analysis using Python (SciPy).</p>
+            <div class="tags">
+                <span class="tag">Signal Processing</span>
+                <span class="tag">SciPy/NumPy</span>
+                <span class="tag">Physics</span>
+            </div>
+            <a href="CV Zakaria Hansali - MaiaSpace.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">Kayrros</span>
+                <span class="tag">Climate/Tech</span>
+            </div>
+            <div class="role-title">Data Scientist R&D</div>
+            <p class="description">Processing satellite/energy data, Time Series forecasting, and Python optimization for climate tech.</p>
+            <div class="tags">
+                <span class="tag">Satellite Data</span>
+                <span class="tag">Time Series</span>
+                <span class="tag">Optimization</span>
+            </div>
+            <a href="CV Zakaria Hansali - Kayrros.pdf" class="download-btn">View CV</a>
+        </div>
+
+         <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">ISAGRI</span>
+                <span class="tag">AgriTech</span>
+            </div>
+            <div class="role-title">Data Scientist ML/LLM</div>
+            <p class="description">Innovation in Machine Learning, Computer Vision, and inference optimization (SGLang vs vLLM).</p>
+            <div class="tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">LLM</span>
+                <span class="tag">Computer Vision</span>
+            </div>
+            <a href="CV Zakaria Hansali - ISAGRI.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">GenAI Lab</span>
+                <span class="tag">AI Research</span>
+            </div>
+            <div class="role-title">GenAI Specialist (Intern)</div>
+            <p class="description">Transformers optimization, RAG pipelines with LangChain, and Azure cloud integration.</p>
+            <div class="tags">
+                <span class="tag">Transformers</span>
+                <span class="tag">RAG</span>
+                <span class="tag">Azure</span>
+            </div>
+            <a href="CV Zakaria Hansali - GenAI Internship.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">MFG Labs</span>
+                <span class="tag">Consulting</span>
+            </div>
+            <div class="role-title">Data Scientist (Hybrid)</div>
+            <p class="description">Hybrid profile combining Stats & Tech. Benchmarking LLMs and delivering consulting-grade analysis.</p>
+            <div class="tags">
+                <span class="tag">Consulting</span>
+                <span class="tag">Stats/Maths</span>
+                <span class="tag">Exploratory Analysis</span>
+            </div>
+            <a href="CV Zakaria Hansali - MFG Labs.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">Mindrift</span>
+                <span class="tag">AI QA</span>
+            </div>
+            <div class="role-title">AI Logic Researcher</div>
+            <p class="description">Benchmarking inference engines and validating LLM logic/reasoning capabilities.</p>
+            <div class="tags">
+                <span class="tag">Logic QA</span>
+                <span class="tag">Benchmarking</span>
+                <span class="tag">GenAI</span>
+            </div>
+            <a href="CV Zakaria Hansali - Mindrift.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">TotalEnergies</span>
+                <span class="tag">Geoscience</span>
+            </div>
+            <div class="role-title">Scientific Python Dev</div>
+            <p class="description">Image analysis for boreholes using NumPy, Tensors, and complex algorithms.</p>
+            <div class="tags">
+                <span class="tag">Tensors</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Image Proc</span>
+            </div>
+            <a href="CV Zakaria Hansali - TotalEnergies Geoscience.pdf" class="download-btn">View CV</a>
+        </div>
+
+         <div class="cv-card scientific">
+            <div class="company-header">
+                <span class="company-name">Netcarbon</span>
+                <span class="tag">Environment</span>
+            </div>
+            <div class="role-title">Data Scientist Geospatial</div>
+            <p class="description">Geospatial data harmonization, reproducible pipelines, and scientific rigor.</p>
+            <div class="tags">
+                <span class="tag">GeoPandas</span>
+                <span class="tag">ETL</span>
+                <span class="tag">Rigor</span>
+            </div>
+            <a href="CV Zakaria Hansali - Netcarbon.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card eng">
+            <div class="company-header">
+                <span class="company-name">Natixis</span>
+                <span class="tag">Finance</span>
+            </div>
+            <div class="role-title">Data Engineer (Big Data)</div>
+            <p class="description">ETL pipelines for risk calculations, distributed computing optimization (Spark/Hadoop notions).</p>
+            <div class="tags">
+                <span class="tag">Finance/Risk</span>
+                <span class="tag">Big Data</span>
+                <span class="tag">Optimization</span>
+            </div>
+            <a href="CV Zakaria Hansali - Natixis.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card eng">
+            <div class="company-header">
+                <span class="company-name">Batconnect</span>
+                <span class="tag">IoT/Energy</span>
+            </div>
+            <div class="role-title">Data Analyst IoT</div>
+            <p class="description">Processing telemetry/sensor data, anomaly detection for batteries, and predictive maintenance.</p>
+            <div class="tags">
+                <span class="tag">IoT/Sensors</span>
+                <span class="tag">Anomaly Detection</span>
+                <span class="tag">Python</span>
+            </div>
+            <a href="CV Zakaria Hansali - Batconnect.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card eng">
+            <div class="company-header">
+                <span class="company-name">Capgemini</span>
+                <span class="tag">Consulting</span>
+            </div>
+            <div class="role-title">Data Engineer & DBA</div>
+            <p class="description">Database administration, migration scripting, and building verification tools.</p>
+            <div class="tags">
+                <span class="tag">DBA</span>
+                <span class="tag">Migration</span>
+                <span class="tag">SQL/NoSQL</span>
+            </div>
+            <a href="CV Zakaria Hansali - Capgemini.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card eng">
+            <div class="company-header">
+                <span class="company-name">SUEZ Digital</span>
+                <span class="tag">Environment</span>
+            </div>
+            <div class="role-title">ML Engineer</div>
+            <p class="description">Optimization models, waste management algorithms, and cleaning sensor data.</p>
+            <div class="tags">
+                <span class="tag">Optimization</span>
+                <span class="tag">ML</span>
+                <span class="tag">Azure</span>
+            </div>
+            <a href="CV Zakaria Hansali - SUEZ Digital.pdf" class="download-btn">View CV</a>
+        </div>
+
+
+        <div class="cv-card bi">
+            <div class="company-header">
+                <span class="company-name">Volkswagen</span>
+                <span class="tag">Automotive</span>
+            </div>
+            <div class="role-title">Data Mgmt & AI Ops</div>
+            <p class="description">Implementing RAG/NLP for data querying, Data Governance, and Quality reporting.</p>
+            <div class="tags">
+                <span class="tag">Data Mgmt</span>
+                <span class="tag">RAG/NLP</span>
+                <span class="tag">Governance</span>
+            </div>
+            <a href="CV Zakaria Hansali - Volkswagen Group France.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card bi">
+            <div class="company-header">
+                <span class="company-name">ArianeGroup</span>
+                <span class="tag">Defense</span>
+            </div>
+            <div class="role-title">Data Analyst & BI</div>
+            <p class="description">Quality reporting, ergonomic dashboards, and process documentation.</p>
+            <div class="tags">
+                <span class="tag">Power BI</span>
+                <span class="tag">Reporting</span>
+                <span class="tag">Documentation</span>
+            </div>
+            <a href="CV Zakaria Hansali - ArianeGroup.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card bi">
+            <div class="company-header">
+                <span class="company-name">GRDF</span>
+                <span class="tag">Energy</span>
+            </div>
+            <div class="role-title">Analyste Pilotage</div>
+            <p class="description">Transforming raw data into pilotage tools and KPIs for the Pyrenees agency.</p>
+            <div class="tags">
+                <span class="tag">Excel Expert</span>
+                <span class="tag">Pilotage</span>
+                <span class="tag">VBA</span>
+            </div>
+            <a href="CV Zakaria Hansali - GRDF.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card bi">
+            <div class="company-header">
+                <span class="company-name">Groupama</span>
+                <span class="tag">Insurance</span>
+            </div>
+            <div class="role-title">Data Analyst SQL</div>
+            <p class="description">Advanced SQL for Datamarts, data governance, and transferring BI skills to Qlik.</p>
+            <div class="tags">
+                <span class="tag">SQL Advanced</span>
+                <span class="tag">Qlik/BI</span>
+                <span class="tag">Datamart</span>
+            </div>
+            <a href="CV Zakaria Hansali - Groupama.pdf" class="download-btn">View CV</a>
+        </div>
+
+         <div class="cv-card bi">
+            <div class="company-header">
+                <span class="company-name">Portfolio CV</span>
+                <span class="tag">General</span>
+            </div>
+            <div class="role-title">Visual Resume</div>
+            <p class="description">A graphical overview of the dual competence in Data Science (Python) and BI (Power BI).</p>
+            <div class="tags">
+                <span class="tag">Visual</span>
+                <span class="tag">Overview</span>
+                <span class="tag">Design</span>
+            </div>
+            <a href="CV Visuel - Zakaria Hansali.pdf" class="download-btn">View CV</a>
+        </div>
+
+
+        <div class="cv-card special">
+            <div class="company-header">
+                <span class="company-name">Valeco</span>
+                <span class="tag">Ecology</span>
+            </div>
+            <div class="role-title">Data Analyst (R Expert)</div>
+            <p class="description">Statistical analysis of Chiroptera (bat) activity using R and Time Series modeling.</p>
+            <div class="tags">
+                <span class="tag">R Language</span>
+                <span class="tag">Ecology</span>
+                <span class="tag">Statistics</span>
+            </div>
+            <a href="CV Zakaria Hansali - VALECO.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card special">
+            <div class="company-header">
+                <span class="company-name">Betclic</span>
+                <span class="tag">Gaming</span>
+            </div>
+            <div class="role-title">Data Analyst & Gamer</div>
+            <p class="description">Analyzing telemetry and user behavior by combining SQL/Python with E-Sports experience.</p>
+            <div class="tags">
+                <span class="tag">Telemetry</span>
+                <span class="tag">E-Sports</span>
+                <span class="tag">User Analytics</span>
+            </div>
+            <a href="CV Zakaria Hansali - Betclic.pdf" class="download-btn">View CV</a>
+        </div>
+
+        <div class="cv-card special">
+            <div class="company-header">
+                <span class="company-name">Edonia</span>
+                <span class="tag">Industry</span>
+            </div>
+            <div class="role-title">Statistical Analyst</div>
+            <p class="description">Applied statistics for industrial processes (MSP, ANOVA) and sensory analysis.</p>
+            <div class="tags">
+                <span class="tag">MSP/Quality</span>
+                <span class="tag">Statistics</span>
+                <span class="tag">Sensory</span>
+            </div>
+            <a href="CV Zakaria Hansali - Edonia.pdf" class="download-btn">View CV</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function filterSelection(category) {
+        var cards = document.getElementsByClassName("cv-card");
+        var buttons = document.getElementsByClassName("filter-btn");
+
+        // Update Buttons
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("active");
+            if (buttons[i].onclick.toString().includes(category)) {
+                buttons[i].classList.add("active");
+            }
+        }
+
+        // Filter Cards
+        for (var i = 0; i < cards.length; i++) {
+            if (category === "all") {
+                cards[i].classList.remove("hidden");
+            } else {
+                if (cards[i].classList.contains(category)) {
+                    cards[i].classList.remove("hidden");
+                } else {
+                    cards[i].classList.add("hidden");
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
